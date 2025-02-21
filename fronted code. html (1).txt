@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Integration Quality</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Improving Data Integration Quality</h2>
+        <input type="file" id="fileInput" multiple>
+        <button onclick="handleFiles()">Upload & Analyze</button>
+        <canvas id="dataChart"></canvas>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function handleFiles() {
+            const input = document.getElementById('fileInput');
+            const files = input.files;
+            if (files.length === 0) {
+                alert('Please upload at least one dataset.');
+                return;
+            }
+            alert(`${files.length} file(s) uploaded successfully!`);
+            visualizeDataQuality();
+        }
+
+        function visualizeDataQuality() {
+            const ctx = document.getElementById('dataChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Completeness', 'Accuracy', 'Consistency', 'Timeliness'],
+                    datasets: [{
+                        label: 'Data Quality Metrics',
+                        data: [80, 90, 75, 85], // Example data values
+                        backgroundColor: ['red', 'blue', 'green', 'orange']
+                    }]
+                }
+            });
+        }
+    </script>
+</body>
+</html>
